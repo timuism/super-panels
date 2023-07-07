@@ -3,6 +3,7 @@ import Kamehouse from "./assets/kamehouse.jpg"
 import Panel from "./components/Panel.vue";
 import PanelHeader from "./components/PanelHeader.vue";
 import PanelContent from "./components/PanelContent.vue";
+// import { next } from "./use-super-panels";
 
 const people = [
   {
@@ -77,16 +78,21 @@ const people = [
 </script>
 
 <template>
-  <main class="h-screen w-screen">
+  <main class="w-screen h-screen">
+
+    <!-- <div class="absolute top-0 z-50">
+      <button @click="next()">Next</button>
+    </div> -->
+
     <Panel>
       <PanelHeader>
-        <h1 class="text-4xl text-blue-700 font-light">Panel</h1>
+        <h1 class="text-4xl font-light text-blue-700">Panel</h1>
       </PanelHeader>
 
       <PanelContent>
-        <ul class="space-y-6 py-6">
+        <ul class="py-6 space-y-6">
           <li v-for="{ name, description } in people" :key="name" class="px-6">
-            <h2 class="text-2xl text-blue-700 font-semibold">{{ name }}</h2>
+            <h2 class="text-2xl font-semibold text-blue-700">{{ name }}</h2>
             <p class="text-lg font-medium text-blue-400">{{ description }}</p>
           </li>
         </ul>

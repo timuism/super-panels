@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { computed, ref, toRefs } from "vue"
-import type { Ref } from "vue"
+import { computed, toRefs } from "vue"
 import { store } from "../store";
 
-type PanelState = 'open' | 'peek' | 'closed'
-
-const { headerHeight, topOffset } = toRefs(store)
-const currentPanelState:Ref<PanelState> = ref('peek')
+const { viewState, headerHeight, topOffset } = toRefs(store)
 
 const $panelHeight = computed(() => {
   return {
@@ -16,7 +12,7 @@ const $panelHeight = computed(() => {
 })
 
 const $panelTransform = computed(() => {
-  switch (currentPanelState.value) {
+  switch (viewState.value) {
     case 'open':
       return {
         transform: 'translateY(0)'
@@ -37,10 +33,10 @@ const $panelTransform = computed(() => {
 </script>
 
 <template>
-  <section class="absolute z-10 overflow-hidden w-full h-full">
+  <section class="absolute z-10 w-full h-full overflow-hidden">
     <div 
       :style="[$panelHeight, $panelTransform]" 
-      class="absolute z-10 w-full bg-white border-t-2 border-l-2 border-r-2 border-gray-200 shadow-md rounded-tl-xl rounded-tr-xl duration-300"
+      class="absolute w-full duration-300 bg-white border-t-2 border-l-2 border-r-2 border-gray-200 shadow-md rounded-tl-xl rounded-tr-xl"
     >
       <slot />
     </div>
