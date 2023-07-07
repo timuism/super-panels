@@ -3,7 +3,7 @@ import Kamehouse from "./assets/kamehouse.jpg"
 import Panel from "./components/Panel.vue";
 import PanelHeader from "./components/PanelHeader.vue";
 import PanelContent from "./components/PanelContent.vue";
-// import { next } from "./use-super-panels";
+import { next } from "./use-super-panels";
 
 const people = [
   {
@@ -80,9 +80,9 @@ const people = [
 <template>
   <main class="w-screen h-screen">
 
-    <!-- <div class="absolute top-0 z-50">
+    <div class="absolute top-0 z-50">
       <button @click="next()">Next</button>
-    </div> -->
+    </div>
 
     <Panel>
       <PanelHeader>

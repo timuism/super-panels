@@ -11,31 +11,34 @@ const $panelHeight = computed(() => {
   }
 })
 
-const $panelTransform = computed(() => {
+const $panelMarginTop = computed(() => {
   switch (viewState.value) {
     case 'open':
       return {
-        transform: 'translateY(0)'
+        // transform: 'translateY(0)'
+        marginTop: 0
       }
 
     case 'peek':
       return {
-        transform: 'translateY(50%)'
+        // transform: 'translateY(50%)'
+        marginTop: window.innerHeight / 2 + 'px'
       }
 
     case 'closed':
       const height = window.innerHeight - topOffset.value - headerHeight.value
       return {
-        transform: `translateY(${height}px)`
+        marginTop: height + 'px'
+        // transform: `translateY(${height}px)`
       }
   }
 })
 </script>
 
 <template>
-  <section class="absolute z-10 w-full h-full overflow-hidden">
+  <section class="absolute z-10 w-full h-full overflow-y-auto no-scrollbar">
     <div 
-      :style="[$panelHeight, $panelTransform]" 
+      :style="[$panelHeight, $panelMarginTop]" 
       class="absolute w-full duration-300 bg-white border-t-2 border-l-2 border-r-2 border-gray-200 shadow-md rounded-tl-xl rounded-tr-xl"
     >
       <slot />
