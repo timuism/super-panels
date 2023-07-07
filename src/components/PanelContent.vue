@@ -7,7 +7,9 @@ import type { Ref } from 'vue'
 const { headerHeight, topOffset } = toRefs(store)
 const content:Ref<HTMLElement | null> = ref(null)
 const contentHeight = ref(-1)
-const { arrivedState } = useScroll(content) 
+const { arrivedState } = useScroll(content)
+
+
 
 watchEffect(async () => {
   if(!content.value) return

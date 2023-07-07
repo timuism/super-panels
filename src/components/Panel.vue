@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import { computed, toRefs } from "vue"
+import { Ref, computed, onMounted, ref, toRefs } from "vue"
 import { store } from "../store";
 
 const { viewState, headerHeight, topOffset } = toRefs(store)
+const allowInnerScroll:Ref<boolean> = ref(false)
+
+onMounted(() => {
+  window.addEventListener('mouseover', (e) => {
+    const eventTarget = e.target as HTMLElement
+    allowInnerScroll.value = eventTarget.closest('[data-inner]') ? true : false
+  })
+})
 
 const $panelHeight = computed(() => {
   return {
@@ -14,32 +22,27 @@ const $panelHeight = computed(() => {
 const $panelMarginTop = computed(() => {
   switch (viewState.value) {
     case 'open':
-      return {
-        // transform: 'translateY(0)'
-        marginTop: 0
-      }
+      return { marginTop: 0 }
 
     case 'peek':
-      return {
-        // transform: 'translateY(50%)'
-        marginTop: window.innerHeight / 2 + 'px'
-      }
+      return { marginTop: window.innerHeight / 2 + 'px' }
 
     case 'closed':
       const height = window.innerHeight - topOffset.value - headerHeight.value
-      return {
-        marginTop: height + 'px'
-        // transform: `translateY(${height}px)`
-      }
+      return { marginTop: height + 'px'}
   }
 })
 </script>
 
 <template>
-  <section class="absolute z-10 w-full h-full overflow-y-auto no-scrollbar">
+  <section 
+    class="absolute z-10 w-full h-full no-scrollbar" 
+    :class="[allowInnerScroll ? 'overflow-y-auto' : 'overflow-hidden']"
+  >
     <div 
       :style="[$panelHeight, $panelMarginTop]" 
       class="absolute w-full duration-300 bg-white border-t-2 border-l-2 border-r-2 border-gray-200 shadow-md rounded-tl-xl rounded-tr-xl"
+      data-inner
     >
       <slot />
     </div>
