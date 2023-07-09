@@ -9,8 +9,6 @@ const content:Ref<HTMLElement | null> = ref(null)
 const contentHeight = ref(-1)
 const { arrivedState } = useScroll(content)
 
-
-
 watchEffect(async () => {
   if(!content.value) return
   contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value

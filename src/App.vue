@@ -78,7 +78,7 @@ const people = [
 </script>
 
 <template>
-  <main class="w-screen h-screen">
+  <main class="w-dscreen h-dscreen">
 
     <div class="absolute top-0 z-50">
       <button @click="next()">Next</button>

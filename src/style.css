@@ -15,4 +15,12 @@
         scrollbar-width: none;  /* Firefox */
     }
   }
+
+  .w-dscreen {
+    width: 100dvw;
+  }
+
+  .h-dscreen {
+    height: 100dhw;
+  }
 }
