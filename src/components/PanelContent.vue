@@ -29,7 +29,7 @@ watchEffect(async () => {
     contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value
   })
 
-  window.addEventListener('scroll', (e) => {
+  window.addEventListener('scroll', () => {
     contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value
   })
 })
