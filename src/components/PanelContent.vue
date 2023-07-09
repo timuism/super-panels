@@ -13,6 +13,7 @@ watchEffect(async () => {
   if(!content.value) return
   contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value
   window.addEventListener('resize', () => {
+    alert('resize!')
     contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value
   })
 })
