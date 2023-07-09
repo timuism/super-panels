@@ -46,13 +46,13 @@ const $contentHeight = computed(() => {
 </script>
 
 <template>
-  <section ref="content" :style="$contentHeight" class="overflow-y-auto">
+  <section ref="content" id="content" :style="$contentHeight" class="overflow-y-auto">
     <slot />
   </section>
 </template>
 
-<style scoped>
-section {
+<style>
+#content {
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
