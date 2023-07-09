@@ -12,8 +12,7 @@ const { arrivedState } = useScroll(content)
 watchEffect(async () => {
   if(!content.value) return
   contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value
-  document.addEventListener('resize', () => {
-    alert("resizeEvent")
+  window.addEventListener('resize', () => {
     contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value
   })
 })
