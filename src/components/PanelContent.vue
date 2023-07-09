@@ -40,7 +40,7 @@ watch(arrivedState, (newArrivedState) => {
 
 const $contentHeight = computed(() => {
   return {
-    height: ( contentHeight.value / window.innerHeight ) + 'dvh'
+    height: contentHeight.value + 'px'
   }
 })
 </script>
