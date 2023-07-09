@@ -16,6 +16,10 @@ watchEffect(async () => {
     alert('resize!')
     contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value
   })
+
+  window.addEventListener('scroll', (e) => {
+    contentHeight.value = window.innerHeight - topOffset.value - headerHeight.value 
+  })
 })
 
 watch(arrivedState, (newArrivedState) => {
