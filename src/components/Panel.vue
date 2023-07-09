@@ -10,6 +10,11 @@ onMounted(() => {
     const eventTarget = e.target as HTMLElement
     allowInnerScroll.value = eventTarget.closest('[data-inner]') ? true : false
   })
+
+  window.addEventListener('touchstart', (e) => {
+    const eventTarget = e.target as HTMLElement
+    allowInnerScroll.value = eventTarget.closest('[data-inner]') ? true : false 
+  })
 })
 
 const $panelHeight = computed(() => {
@@ -36,12 +41,12 @@ const $panelMarginTop = computed(() => {
 
 <template>
   <section 
-    class="absolute z-10 w-full h-full no-scrollbar" 
+    class="absolute z-10 w-full h-full pointer-events-none no-scrollbar" 
     :class="[allowInnerScroll ? 'overflow-y-auto' : 'overflow-hidden']"
   >
     <div 
       :style="[$panelHeight, $panelMarginTop]" 
-      class="absolute w-full duration-300 bg-white border-t-2 border-l-2 border-r-2 border-gray-200 shadow-md rounded-tl-xl rounded-tr-xl"
+      class="absolute w-full duration-300 bg-white border-t-2 border-l-2 border-r-2 border-gray-200 shadow-md pointer-events-auto rounded-tl-xl rounded-tr-xl"
       data-inner
     >
       <slot />
