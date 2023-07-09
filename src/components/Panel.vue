@@ -41,7 +41,7 @@ const $panelMarginTop = computed(() => {
 
 <template>
   <section 
-    class="absolute z-10 w-full pointer-events-none h-dscreen no-scrollbar" 
+    class="fixed bottom-0 z-10 w-full pointer-events-none h-dscreen no-scrollbar" 
     :class="[allowInnerScroll ? 'overflow-y-auto' : 'overflow-hidden']"
   >
     <div 
