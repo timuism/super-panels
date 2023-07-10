@@ -24,3 +24,7 @@
     height: 100dvh;
   }
 }
+
+html, body {
+  overflow: hidden
+}

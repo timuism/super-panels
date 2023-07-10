@@ -45,9 +45,10 @@ const $panelMarginTop = computed(() => {
 </script>
 
 <template>
-  <section 
+  <section
     class="absolute z-10 w-full pointer-events-none h-dscreen no-scrollbar" 
     :class="[allowInnerScroll ? 'overflow-y-auto' : 'overflow-hidden']"
+
   >
     <div 
       :style="[$panelHeight, $panelMarginTop]" 
@@ -58,3 +59,10 @@ const $panelMarginTop = computed(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+section {
+  height: -webkit-fill-available;
+  -webkit-overflow-scrolling: touch;
+}
+</style>
