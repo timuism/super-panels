@@ -4,6 +4,7 @@ import { store } from "../store";
 
 const { viewState, headerHeight, topOffset } = toRefs(store)
 const allowInnerScroll:Ref<boolean> = ref(false)
+const currentWindowInnerHeight = ref(-1)
 
 onMounted(() => {
   window.addEventListener('mouseover', (e) => {
@@ -15,11 +16,15 @@ onMounted(() => {
     const eventTarget = e.target as HTMLElement
     allowInnerScroll.value = eventTarget.closest('[data-inner]') ? true : false 
   })
+
+  window.addEventListener('resize', () => {
+    currentWindowInnerHeight.value = window.innerHeight
+  })
 })
 
 const $panelHeight = computed(() => {
   return {
-    height: window.innerHeight - topOffset.value + 'px',
+    height: currentWindowInnerHeight.value - topOffset.value + 'px',
     top: topOffset.value + 'px'
   }
 })
@@ -30,10 +35,10 @@ const $panelMarginTop = computed(() => {
       return { marginTop: 0 }
 
     case 'peek':
-      return { marginTop: window.innerHeight / 2 + 'px' }
+      return { marginTop: currentWindowInnerHeight.value / 2 + 'px' }
 
     case 'closed':
-      const height = window.innerHeight - topOffset.value - headerHeight.value
+      const height = currentWindowInnerHeight.value - topOffset.value - headerHeight.value
       return { marginTop: height + 'px'}
   }
 })
