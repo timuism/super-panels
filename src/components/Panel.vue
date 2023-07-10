@@ -4,7 +4,7 @@ import { store } from "../store";
 
 const { viewState, headerHeight, topOffset } = toRefs(store)
 const allowInnerScroll:Ref<boolean> = ref(false)
-const currentWindowInnerHeight = ref(-1)
+const currentWindowInnerHeight = ref(window.innerHeight)
 
 onMounted(() => {
   window.addEventListener('mouseover', (e) => {
